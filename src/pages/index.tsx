@@ -4,16 +4,40 @@ import Layout from '@/components/Layout'
 import { UseContext } from '@/lib/Appcontext'
 import { GetServerSideProps, NextPage } from 'next';
 import Footer from '@/components/Footer';
-import FillImage from '@/components/FillImage';
 import Navbar from '@/components/Navbar';
+import Products from '@/components/Products';
+import { getReviews } from '@/lib/reviews/getReviews';
+import { withSessionSsr } from '@/lib/auth/session';
+import { useEffect } from 'react';
+import { SessionUserType, dataUserSession } from '@/lib/auth/sessionusertype';
+import { getProductsFirebase } from '@/lib/firebase';
 interface Props {
 
-  lang: string
+  lang: string,
+  comments: Array<any>,
+  products: Array<any>,
+  user : SessionUserType
 }
+
+
 
 const Home: NextPage<Props> = (props) => {
 
   const context = UseContext();
+  
+
+  useEffect(() => {
+    
+    context.setCountCart(props.user);
+    context.setLang(props.lang);
+
+    return () => {
+
+       context.setLang("");
+    }
+
+  }, [props.user]);
+
 
 
   return (
@@ -26,7 +50,7 @@ const Home: NextPage<Props> = (props) => {
       </Head>
       <Layout>
         <div>
-          <Navbar isLogged={false} />
+          <Navbar isLogged={false} lang={props.lang} products={props.products} />
         </div>
         <div className='mb-5'>
           <div className={`${styles.containerImage}`}>
@@ -35,10 +59,11 @@ const Home: NextPage<Props> = (props) => {
                 <source src="video.mp4" type="video/mp4" />
               </video>
               <div className={`${styles.buyNowButtonContainer}`}>
-                <input  type="button" className={`${styles.buttonBuyNow} btn btn-success btn-lg`} value={"Comprar ahora"} />
+                <input type="button" className={`${styles.buttonBuyNow} btn btn-success btn-lg`}  value={"Comprar ahora"} />
               </div>
             </div>
           </div>
+          <Products products={props.products} coments={props.comments} />
         </div>
         <Footer />
       </Layout>
@@ -49,13 +74,22 @@ const Home: NextPage<Props> = (props) => {
 export default Home;
 
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = withSessionSsr(
+  async function getServerSideProps(context) {
 
-  return {
 
-    props: {
+    const reviews = await getReviews();
+    const products = await getProductsFirebase();
+    
 
-      lang: context.locale
-    }
-  }
-}
+
+    return {
+      props: {
+        user: context.req.session.user || dataUserSession,
+        lang: context.locale,
+        comments: reviews,
+        products: products
+      },
+    };
+  },
+);

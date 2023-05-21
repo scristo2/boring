@@ -9,14 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^1.52.1",
+    "@types/isomorphic-fetch": "^0.0.36",
     "@types/node": "18.15.11",
     "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
+    "axios": "^1.4.0",
+    "cookies-next": "^2.1.1",
+    "cors": "^2.8.5",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
+    "firebase": "^9.22.0",
+    "iron-session": "^6.3.1",
+    "isomorphic-fetch": "^3.0.0",
     "next": "13.2.4",
+    "next-auth": "^4.22.1",
+    "nextjs-cors": "^2.1.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "stripe": "^12.3.0",
     "typescript": "5.0.3"
   }
 }

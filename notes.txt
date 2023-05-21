@@ -1,0 +1,15 @@
+const reviews   = await  getReviews();
+  const products = await getProducts();
+
+ 
+     
+
+  return {
+
+    props: {
+
+      lang: context.locale,
+      comments : reviews,
+      products : products
+    }
+  }

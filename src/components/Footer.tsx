@@ -1,10 +1,15 @@
 import { NextPage } from "next";
 import Link from "next/link";
+import Cart from "./cart/Cart";
+import { UseContext } from "@/lib/Appcontext";
 const Footer: NextPage = (props) => {
+
+    const context = UseContext();
 
     return (
 
         <div className="container">
+            {!context.isLoading && <Cart/>}
             <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
                 {/* Left */}
                 <div className="me-5 d-none d-lg-block">
@@ -106,8 +111,8 @@ const Footer: NextPage = (props) => {
             {/* Section: Links  */}
             {/* Copyright */}
             <div className="text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-                © 2021 Copyright:
-                <Link className="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</Link>
+                © 2023- Copyright:
+                <Link className="text-reset fw-bold" href="https://orfibesa.com">orfibesa.com</Link>
             </div>
             {/* Copyright */}
         </div>

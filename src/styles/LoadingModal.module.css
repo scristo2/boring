@@ -1,0 +1,13 @@
+.divLodingModal{
+
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    left: calc(50% - 50px);
+    top: calc(50% - 50px);
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1 !important;
+}

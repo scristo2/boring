@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "asador electrico",
+        "categorie": "electrodomestico",
+        "price": 80,
+        "url_image": "/steak.jpg",
+        "type": "bestseller",
+        "url_page" : "/"
+    },
+    {
+        "id": 2,
+        "name": "apoyadero",
+        "categorie": "decoracion",
+        "price": "45",
+        "type": "new",
+        "url_image": "/steak.jpg",
+        "url_page" : "/"
+    }
+]

@@ -6,13 +6,14 @@ type ImageProps = {
     src : string,
     alt : string,
     width : number,
-    height : number
+    height : number,
+    className ? : string
 
 }
 
 const SizeImage : NextPage<ImageProps>  = (props) => {
 
-    return(<Image width={props.width} height={props.height} src={props.src} priority alt={props.alt}/>);
+    return(<Image width={props.width} className={props.className} height={props.height} src={props.src} priority alt={props.alt}/>);
 }
 
 export default SizeImage;
